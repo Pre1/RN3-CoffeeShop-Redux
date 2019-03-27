@@ -16,6 +16,14 @@ import {
 } from "native-base";
 
 class Login extends Component {
+  static navigationOptions = {
+    title: "Login"
+  };
+
+  componentWillUnmount = () => {
+    console.log("LOGIN wumont");
+  };
+
   render() {
     return (
       <Content>
@@ -53,10 +61,18 @@ class Login extends Component {
               </Form>
             </Body>
           </ListItem>
-          <Button full success>
+          <Button
+            full
+            success
+            onPress={() => this.props.navigation.replace("Profile")}
+          >
             <Text>Login</Text>
           </Button>
-          <Button full warning>
+          <Button
+            full
+            warning
+            onPress={() => this.props.navigation.navigate("Profile")}
+          >
             <Text>Register</Text>
           </Button>
         </List>

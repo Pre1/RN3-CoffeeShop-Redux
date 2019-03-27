@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // NativeBase Components
-import { List, Content, Spinner } from "native-base";
+import { List, Content, Spinner, Button, Icon, Text } from "native-base";
 
 // Store
-import coffeeshops from "./list";
+// import coffeeshops from "./list";
 
 // Component
 import CoffeeItem from "./CoffeeItem";
+import CartButton from "./CartButton";
 
 class CoffeeList extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Coffee List",
+      headerLeft: null,
+      headerRight: <CartButton navigation={navigation} />
+    };
+  };
+
   render() {
     const { coffeeShops, loading } = this.props.coffeeReducer;
     let shops;

@@ -19,7 +19,11 @@ class CoffeeCart extends Component {
     return (
       <List>
         {cartItems}
-        <Button full danger>
+        <Button
+          full
+          danger
+          onPress={() => this.props.navigation.navigate("OrderHistory")}
+        >
           <Text>Checkout</Text>
         </Button>
       </List>

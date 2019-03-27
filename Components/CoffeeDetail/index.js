@@ -15,13 +15,20 @@ import {
   Content
 } from "native-base";
 
+import CartButton from "../CoffeeList/CartButton";
 // Style
 import styles from "./styles";
 
 //List
-import coffeeshops from "../CoffeeList/list";
+// import coffeeshops from "../CoffeeList/list";
 
 class CoffeeDetail extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam("coffeeShop").name,
+      headerRight: <CartButton navigation={navigation} />
+    };
+  };
   state = {
     drink: "Cappuccino",
     option: "Small"
@@ -38,11 +45,15 @@ class CoffeeDetail extends Component {
       option: value
     });
   };
-
+  componentDidMount() {}
   render() {
     const { coffeeShops, loading } = this.props.coffeeReducer;
     if (loading) return <Content />;
-    const coffeeshop = coffeeShops[0];
+    // const coffeeshop = coffeeShops[0];
+    const coffeeshop = this.props.navigation.getParam(
+      "coffeeShop",
+      "default still loading"
+    );
     return (
       <Content>
         <List>
@@ -55,7 +66,7 @@ class CoffeeDetail extends Component {
             </Left>
             <Body />
             <Right>
-              <Thumbnail bordered source={coffeeshop.img} />
+              <Thumbnail bordered source={{ uri: coffeeshop.img }} />
             </Right>
           </ListItem>
           <ListItem style={{ borderBottomWidth: 0 }}>

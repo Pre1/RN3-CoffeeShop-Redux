@@ -3,6 +3,8 @@ import { Spinner } from "native-base";
 import HomePage from "./Components/HomePage";
 import { Provider } from "react-redux";
 
+import Profile from "./Components/Profile";
+import OrderHistory from "./Components/OrderHistory";
 // Store
 import store from "./store";
 
@@ -26,6 +28,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <HomePage />
+        {/* <Profile /> */}
       </Provider>
     );
   }
